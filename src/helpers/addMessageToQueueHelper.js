@@ -1,6 +1,9 @@
 //AWS dependencies
 import { SendMessageCommand } from "@aws-sdk/client-sqs";
 
+// npm dependencies
+import { v4 as uuidv4 } from "uuid";
+
 // local dependencies
 import { messageQueueClient } from "../lib/queueClient.js";
 
@@ -13,16 +16,16 @@ export async function addMessageToQueue(messageData) {
         DataType: "String",
         StringValue: itemName,
       },
-      QuantityPurchased: {
-        DataType: "Number",
-        StringValue: qtyPurchased,
+      PurchasedTime: {
+        DataType: "String",
+        StringValue: new Date().toISOString(),
       },
     },
     QueueUrl: queueUrl,
     // following fields are must for FIFO queue
-    MessageDeduplicationId: "TheWhistler",
-    MessageGroupId: "Group1",
-    MessageBody: "This items are purchased from the store",
+    MessageDeduplicationId: uuidv4(),
+    MessageGroupId: process.env.MESSAGE_GROUP_ID,
+    MessageBody: JSON.stringify({ itemName, qtyPurchased }),
   };
   const data = messageQueueClient.send(new SendMessageCommand(params));
   return data;

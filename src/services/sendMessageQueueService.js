@@ -1,11 +1,7 @@
-//AWS dependencies
-// import { ListQueuesCommand } from "@aws-sdk/client-sqs";
-
 // local dependencies
 import { sendResponse } from "../helpers/sendResponse.js";
-// import { messageQueueClient } from "../lib/queueClient.js";
 import { listAllQueues } from "../helpers/listQueuesHelper.js";
-import { addMessageToQueue } from "../helpers/sendMessageToQueueHelper.js";
+import { addMessageToQueue } from "../helpers/addMessageToQueueHelper.js";
 
 export async function sendMessageQueueHandler(event) {
   try {
@@ -32,13 +28,12 @@ export async function sendMessageQueueHandler(event) {
       queueUrl: appQueueUrl,
     });
     const res = {
-      message: "API endpoint reached",
-      queueURLs,
-      addMessageData,
+      appQueueUrl,
+      messageId: addMessageData.MessageId,
     };
     return sendResponse(process.env.SUCCESS_CODE, res);
   } catch (error) {
-    const res = { message: "Error occurred", error };
+    const res = { message: "Error occurred", error: error.toString() };
     return sendResponse(process.env.ERROR_CODE, res);
   }
 }
