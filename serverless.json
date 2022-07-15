@@ -1,0 +1,35 @@
+{
+  "service": "simple-aws-sqs-lambda",
+  "frameworkVersion": "3",
+  "plugins": ["serverless-dotenv-plugin"],
+  "configValidationMode": "error",
+
+  "provider": {
+    "name": "aws",
+    "iam": {
+      "role": {
+        "statements": [
+          {
+            "Effect": "Allow",
+            "Action": ["sqs:*"],
+            "Resource": "*"
+          }
+        ],
+        "managedPolicies": [
+          "arn:aws:iam::657149196530:policy/ReadWriteObjectsPolicyForABucket"
+        ]
+      }
+    },
+    "region": "ap-south-1",
+    "runtime": "nodejs16.x",
+    "memorySize": 128,
+    "deploymentMethod": "direct"
+  },
+
+  "functions": {
+    "sendMessage": {
+      "handler": "src/services/sendMessageQueueService.sendMessageQueueHandler",
+      "events": [{ "httpApi": "GET /sendmessage" }]
+    }
+  }
+}
