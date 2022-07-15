@@ -22,11 +22,22 @@ export async function sendMessageQueueHandler(event) {
         message: "Application mentioned Queue is not present",
       });
     }
-    const addMessageData = await addMessageToQueue({
-      itemName: "Tata Salt",
-      qtyPurchased: "6",
-      queueUrl: appQueueUrl,
-    });
+
+    // extracting the message from the API body
+    const messageReceived = event?.body && JSON.parse(event.body);
+    if (
+      !messageReceived ||
+      !messageReceived.itemPurchased ||
+      !messageReceived.storeName
+    ) {
+      return sendResponse(process.env.ERROR_CODE, {
+        message: "Purchase Data is Missing",
+      });
+    }
+    const addMessageData = await addMessageToQueue(
+      messageReceived,
+      appQueueUrl
+    );
     const res = {
       appQueueUrl,
       messageId: addMessageData.MessageId,

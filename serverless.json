@@ -29,7 +29,7 @@
   "functions": {
     "sendMessage": {
       "handler": "src/services/sendMessageQueueService.sendMessageQueueHandler",
-      "events": [{ "httpApi": "GET /sendmessage" }]
+      "events": [{ "httpApi": "POST /sendmessage" }]
     }
   }
 }
