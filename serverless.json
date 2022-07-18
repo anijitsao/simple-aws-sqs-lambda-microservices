@@ -11,7 +11,7 @@
         "statements": [
           {
             "Effect": "Allow",
-            "Action": ["sqs:*", "ses:*"],
+            "Action": ["sqs:*", "ses:*", "s3:*"],
             "Resource": "*"
           }
         ],

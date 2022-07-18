@@ -22,7 +22,10 @@ export async function sendEmailHandler(event) {
           Body: {
             Html: {
               Charset: "UTF-8",
-              Data: sampleEmailTemplate.emailContent,
+              Data: sampleEmailTemplate.emailContent.replace(
+                "{{orderId}}",
+                event.orderId
+              ),
             },
           },
           Subject: {
