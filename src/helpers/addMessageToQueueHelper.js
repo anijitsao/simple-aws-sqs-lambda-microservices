@@ -5,7 +5,7 @@ import { SendMessageCommand } from "@aws-sdk/client-sqs";
 import { v4 as uuidv4 } from "uuid";
 
 // local dependencies
-import { messageQueueClient } from "../lib/queueClient.js";
+import { messageQueueClient } from "../libs/queueClient.js";
 
 export async function addMessageToQueue(messageData, queueUrl) {
   const { itemPurchased, storeName } = messageData;
