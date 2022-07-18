@@ -2,7 +2,7 @@
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 
 // local dependencies
-import { emailClient } from "../lib/emailClient.js";
+import { emailClient } from "../libs/emailClient.js";
 import { listGenericIdentities } from "../helpers/listGenericEmailIdentities.js";
 import { sampleEmailTemplate } from "../helpers/generateTemplates.js";
 
