@@ -1,7 +1,7 @@
 # simple-aws-sqs-lambda-microservices
 Simple [GraphQL](https://graphql.org/) APIs implementation using [Node JS](https://nodejs.org/en/docs/) and [AWS Lambda](https://aws.amazon.com/lambda/). 
 
-This example illustrates how to deploy [GraphQL](https://graphql.org/) APIs using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. 
+This example illustrates how to deploy **Microservices** using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. 
 This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events. 
 
 <!---
@@ -15,7 +15,7 @@ To use the code in this example you **must** have an valid [AWS account](https:/
 
 
 ## Features
-1. [AWS Lambda](https://aws.amazon.com/lambda/) function using [NodeJS](https://nodejs.org/en/docs/)
+1. [AWS Lambda](https://aws.amazon.com/lambda/) functions using [NodeJS](https://nodejs.org/en/docs/)
 2. Function is using latest version of [AWS SDK JavaScript v3](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html) with all **ES6+**  syntaxes like Promises, `async/await`
 
 <ol start="3">
@@ -37,11 +37,10 @@ To use the code in this example you **must** have an valid [AWS account](https:/
 6. [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) are using [AWS API GateWay](https://aws.amazon.com/api-gateway/)
 
 <ol start="7">
-  <li> All data is saved in <a href="https://www.mongodb.com/docs/atlas/">MongoDB Atlas</a> i.e. <i>persistent</i>
-  <!--- <li> <strong>Caching</strong> is used for faster response in the APIs. <a href="https://redis.io/">Redis</a> is used for that purpose</li> -->
+  <!--- <li> All data is saved in <a href="https://www.mongodb.com/docs/atlas/">MongoDB Atlas</a> i.e. <i>persistent</i>
+   <li> <strong>Caching</strong> is used for faster response in the APIs. <a href="https://redis.io/">Redis</a> is used for that purpose</li> -->
   <li> This APIs can also be consumed by any <b>Frontend Application</b>.</li> 
-  <li> To use <a href="https://graphql.org/">GraphQL</a> features <a href="https://www.apollographql.com/docs/apollo-server/">Apollo Server</a> is used
-  <li> For the <i>Schema</i> generation <b>Type Definitions</b> are added. <b>Queries</b> are used for the <i>Reading</i> operations while <b>Mutations</b> are added for <i>Mutable</i> operations.
+  
 </ol>  
 
 
@@ -76,13 +75,13 @@ $ serverless deploy
 
 After successful deployment, you can invoke the deployed **functions / resolvers**. 
 
-However, to call using [GraphQL](https://graphql.org/) API you can use any *supported* Client like [Altair GraphQL Client](https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja?hl=en) with the `url` and *HTTP Verbs* as shown in Terminal after using `serverless deploy`.
+However, to call HTTP API you can use any *supported* REST Client like [Talend API Tester](https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?hl=en) with the `url` and *HTTP Verbs* as shown in Terminal after using `serverless deploy`.
 
 ## API Listing
 
 API listing is given below, -
 
-**POST** /url-of-the-deployed-lambda/graphql have the following input JSON
+**POST** /url-of-the-deployed-lambda/sendmessage have the following input JSON
 ```javascript
 {
   "itemPurchased": [
