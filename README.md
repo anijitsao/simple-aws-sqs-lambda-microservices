@@ -1,17 +1,13 @@
 # simple-aws-sqs-lambda-microservices
-Simple [GraphQL](https://graphql.org/) APIs implementation using [Node JS](https://nodejs.org/en/docs/) and [AWS Lambda](https://aws.amazon.com/lambda/). 
+Simple [Microservices](https://aws.amazon.com/microservices/) APIs implementation using [Node JS](https://nodejs.org/en/docs/) with [AWS Lambda Functions](https://aws.amazon.com/lambda/) and [AWS Simple Queue Service](https://aws.amazon.com/sqs/) along with [AWS Simple Email Service](https://aws.amazon.com/ses/)
 
 This example illustrates how to deploy **Microservices** using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. 
-This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events. 
+This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events i.e. `httpApi` and [AWS Simple Queue Service](https://aws.amazon.com/sqs/) events i.e. `sqs`.
 
-<!---
-For faster response with the APIs [Redis](https://redis.io/) *caching* is used.
-For *session tracking* [JSON Web Token (JWT)](https://jwt.io/) is used.
--->
 
 All *logs* for the function is kept in [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/) i.e *persistent*.
 
-To use the code in this example you **must** have an valid [AWS account](https://aws.amazon.com/account/) and necessary [AWS IAM](https://aws.amazon.com/iam/) roles and programmatic access to an user. 
+To use the code in this example you **must** have an valid [AWS account](https://aws.amazon.com/account/) and necessary [AWS IAM](https://aws.amazon.com/iam/) roles and *programmatic access* to an user. You should alse have an [AWS Simple Email Service ](https://aws.amazon.com/ses/) *Identity* for sending Emails.
 
 
 ## Features
@@ -31,21 +27,11 @@ To use the code in this example you **must** have an valid [AWS account](https:/
 </ol>  
 
 
-<!---
-6. For **session tracking** [JWT](https://jwt.io/) is used.
--->
+
 6. [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) are using [AWS API GateWay](https://aws.amazon.com/api-gateway/)
-
-<ol start="7">
-  <!--- <li> All data is saved in <a href="https://www.mongodb.com/docs/atlas/">MongoDB Atlas</a> i.e. <i>persistent</i>
-   <li> <strong>Caching</strong> is used for faster response in the APIs. <a href="https://redis.io/">Redis</a> is used for that purpose</li> -->
-  <li> This APIs can also be consumed by any <b>Frontend Application</b>.</li> 
-  
-</ol>  
-
-
-
-11. [NPM](https://www.npmjs.com/) dependencies are used for various purposes.
+7. **Two** types of evnets are supported namely `httpApi` and `sqs`
+8. Emails are sent when the corresponing functions are invoked through **HTTP POST** request
+9. [NPM](https://www.npmjs.com/) dependencies are used for various purposes.
 
 
 ## Usage
@@ -59,6 +45,8 @@ Install all the necessary dependencies by going inside the directory
 
 ```bash
 $ cd simple-aws-sqs-lambda-microservices
+
+# To install necessary dependencies
 $ npm install
 ```
 
@@ -73,7 +61,7 @@ $ serverless deploy
 
 ### Invocation
 
-After successful deployment, you can invoke the deployed **functions / resolvers**. 
+After successful deployment, you can invoke the deployed **functions**. 
 
 However, to call HTTP API you can use any *supported* REST Client like [Talend API Tester](https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?hl=en) with the `url` and *HTTP Verbs* as shown in Terminal after using `serverless deploy`.
 
