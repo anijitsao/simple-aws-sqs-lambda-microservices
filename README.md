@@ -1,13 +1,14 @@
 # simple-aws-sqs-lambda-microservices
-Simple [Microservices](https://aws.amazon.com/microservices/) APIs implementation using [Node JS](https://nodejs.org/en/docs/) with [AWS Lambda Functions](https://aws.amazon.com/lambda/) and [AWS Simple Queue Service](https://aws.amazon.com/sqs/) along with [AWS Simple Email Service](https://aws.amazon.com/ses/)
+Simple [Microservices](https://aws.amazon.com/microservices/) APIs implementation using [Node JS](https://nodejs.org/en/docs/) with [AWS Lambda Functions](https://aws.amazon.com/lambda/) and [AWS Simple Queue Service](https://aws.amazon.com/sqs/) along with [AWS Simple Email Service](https://aws.amazon.com/ses/).
 
-This example illustrates how to deploy **Microservices** using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. 
-This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events i.e. `httpApi` and [AWS Simple Queue Service](https://aws.amazon.com/sqs/) events i.e. `sqs`.
+This example illustrates how to deploy [Microservices](https://aws.amazon.com/microservices/) using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. [Microservices](https://aws.amazon.com/microservices/) *talk* with each other using **message queue** implemented through [AWS Simple Queue Service](https://aws.amazon.com/sqs/).
+
+This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events i.e. `httpApi` as well as [AWS Simple Queue Service](https://aws.amazon.com/sqs/) events i.e. `sqs`.
 
 
 All *logs* for the function is kept in [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/) i.e *persistent*.
 
-To use the code in this example you **must** have an valid [AWS account](https://aws.amazon.com/account/) and necessary [AWS IAM](https://aws.amazon.com/iam/) roles and *programmatic access* to an user. You should alse have an [AWS Simple Email Service ](https://aws.amazon.com/ses/) *Identity* for sending Emails.
+To use the code in this example you **must** have an valid [AWS account](https://aws.amazon.com/account/) and necessary [AWS IAM](https://aws.amazon.com/iam/) roles and *programmatic access* to an user. You should **also** have an [AWS Simple Email Service ](https://aws.amazon.com/ses/) *Identity* for sending Emails.
 
 
 ## Features
