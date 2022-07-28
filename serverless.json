@@ -23,7 +23,8 @@
     "region": "ap-south-1",
     "runtime": "nodejs16.x",
     "memorySize": 128,
-    "deploymentMethod": "direct"
+    "deploymentMethod": "direct",
+    "versionFunctions": false
   },
 
   "functions": {
