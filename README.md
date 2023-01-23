@@ -28,7 +28,7 @@ To use the code in this example you **must** have an valid [AWS account](https:/
 </ol>
 
 6. [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) are using [AWS API GateWay](https://aws.amazon.com/api-gateway/)
-7. **Three** types of events are supported namely `httpApi, schedule` and `sqs`
+7. **Two** types of events are supported namely `httpApi` and `sqs`
 8. Emails are sent when the corresponing functions are invoked through **HTTP POST** request
 9. [NPM](https://www.npmjs.com/) dependencies are used for various purposes.
 
