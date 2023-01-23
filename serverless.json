@@ -41,6 +41,10 @@
           }
         }
       ]
+    },
+    "cronFileUpload": {
+      "handler": "src/services/cronFileUploadService.cronFileUploadHandler",
+      "events": [{ "schedule": "rate(5 minutes)" }]
     }
   }
 }
