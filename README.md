@@ -88,3 +88,23 @@ API listing is given below, -
   "storeName": "Grofers"
 }
 ```
+
+**GET** /url-of-the-deployed-lambda/getcontents have no input JSON
+
+**POST** /url-of-the-deployed-lambda/upload have the following input JSON
+
+```javascript
+{
+  "fileName": "hello.txt",
+  "fileContents": "This is hello world text",
+  "userId": "7840awuw4js568wm4nsuar5h" // optional
+}
+```
+
+**POST** /url-of-the-deployed-lambda/greeting have the following input JSON
+
+```javascript
+{
+  "name": "John Doe",
+}
+```
