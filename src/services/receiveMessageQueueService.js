@@ -1,26 +1,22 @@
 // local dependencies
 import { sendEmailHandler } from "./sendEmailService.js";
-
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-const s3Client = new S3Client({ region: process.env.REGION });
+import { fileUploadHandler } from "./fileUploadService.js";
 
 export async function receiveMessageQueueHandler(event) {
   console.log("SQS Event received\n", event);
-  const msgFromQuue = event.Records[0];
-  const msgBody = JSON.parse(msgFromQuue.body);
-  const messageAttributes = msgFromQuue.messageAttributes;
-  const orderId = msgFromQuue.messageId;
+  const msgFromQueue = event.Records[0];
+  const msgBody = JSON.parse(msgFromQueue.body);
+  const orderId = msgFromQueue.messageId;
   console.log("msg bdoy", msgBody);
 
   try {
-    const bucketParams = {
-      Bucket: "file-uploads-bucket-s3",
-      Key: `sqsdemo/order-${orderId}.txt`,
-      Body: JSON.stringify(msgBody),
-    };
-    const data = await s3Client.send(new PutObjectCommand(bucketParams));
-    console.log("data", data);
+    let fileContents = JSON.stringify(msgBody);
+    let fileName = `sqsdemo/order-${orderId}.txt`;
+    const eventBody = { body: { fileName, fileContents } };
     sendEmailHandler({ orderId });
+
+    // calling the file upload lambda
+    return fileUploadHandler(JSON.stringify(eventBody));
   } catch (error) {
     console.log("Error", error);
   }
