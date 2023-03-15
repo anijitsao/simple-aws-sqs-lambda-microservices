@@ -4,7 +4,7 @@ Simple [Microservices](https://aws.amazon.com/microservices/) APIs implementatio
 
 This example illustrates how to deploy [Microservices](https://aws.amazon.com/microservices/) using [NodeJS](https://nodejs.org/en/docs/) functions running on [AWS Lambda](https://aws.amazon.com/lambda/) using the traditional [Serverless](https://www.serverless.com/framework/docs/providers/aws/guide/intro) Framework. [Microservices](https://aws.amazon.com/microservices/) _talk_ with each other using **message queue** implemented through [AWS Simple Queue Service](https://aws.amazon.com/sqs/).
 
-This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events i.e. `httpApi` as well as [AWS Simple Queue Service](https://aws.amazon.com/sqs/) events i.e. `sqs`.
+This Example works with [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) events i.e. `httpApi` as well as [AWS Simple Queue Service](https://aws.amazon.com/sqs/) events i.e. `sqs`. When deployed the functions can work with various types of [AWS S3](https://aws.amazon.com/s3/) operations like `ListBuckets, CreateBucket, PutObject, GetObject`.
 
 All _logs_ for the function is kept in [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/) i.e _persistent_.
 
@@ -20,18 +20,22 @@ To use the code in this example you **must** have an valid [AWS account](https:/
      Function are deployed using <a href="https://www.serverless.com/framework/docs/providers/aws/guide/intro">Serverless</a> Framework.
   </li>  
   <li>
-    <code>serverless.json</code> is used for deployment configuration instead of <code>serverless.yml</code>.
+    <code>serverless.yml</code> is used for deployment configuration.
   </li>  
   <li>
     All the deployment is created in <a href="https://aws.amazon.com/s3/">AWS S3</a> to store the <code>.zip</code> of the function code and <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> Stack.
-  </li>  
+  </li>
+
+  <li> Basic <a href="https://aws.amazon.com/s3/">AWS S3</a> operations <code>ListBuckets, CreateBucket, PutObject, GetObject</code> are supported.</li>
 </ol>
 
-6. [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) are using [AWS API GateWay](https://aws.amazon.com/api-gateway/)
-7. **Two** types of events are supported namely `httpApi` and `sqs`
-8. Emails are sent when the corresponing functions are invoked through **HTTP POST** request
-9. [NPM](https://www.npmjs.com/) dependencies are used for various purposes.
+<br>
 
+7. [AWS HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop.html) are using [AWS API GateWay](https://aws.amazon.com/api-gateway/)
+8. **Three** types of events are supported namely `httpApi`, `schedule` and `sqs`.
+9. Emails are sent when the corresponing functions are invoked through **HTTP POST** request
+10. [NPM](https://www.npmjs.com/) dependencies are used for various purposes.
+11. This APIs can also be consumed by any <b>Frontend Application</b>.
 
 ## Usage
 
@@ -54,8 +58,11 @@ $ npm install
 
 In order to deploy the example, you need to run the following command:
 
-```
+```bash
 $ serverless deploy
+
+# To deploy a particular function
+$ serverless deploy function -f greeting
 ```
 
 ### Invocation
