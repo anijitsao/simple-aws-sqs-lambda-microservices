@@ -1,0 +1,62 @@
+service: serverless-basics-s3
+frameworkVersion: "3"
+configValidationMode: error
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-iamroles
+provider:
+  name: aws
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+          - sqs:*
+          - ses:*
+          - s3:*
+          Resource: "*"
+      managedPolicies:
+        - arn:aws:iam::657149196530:policy/ReadWriteObjectsPolicyForABucket
+  runtime: nodejs16.x
+  region: ap-south-1
+  deploymentMethod: direct
+  memorySize: 128
+  versionFunctions: false
+
+functions:
+  fileUpload:
+    handler: src/services/fileUploadService.fileUploadHandler
+    events:
+      - httpApi: POST /upload
+
+  listContents:
+    handler: src/services/listContentsService.listContentsHandler
+    events:
+      - httpApi: GET /getcontents
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:ListBucket
+        Resource: arn:aws:s3:::file-uploads-bucket-s3
+
+  greeting:
+    handler: src/services/greetingService.greetingHandler
+    events:
+      - httpApi: POST /greeting
+
+  cronfileUpload:
+    handler: src/services/cronFileUploadService.cronFileUploadServiceHandler
+    events:
+      - schedule: rate(5 minutes)
+
+  sendMessage:
+    handler: src/services/sendMessageQueueService.sendMessageQueueHandler
+    events:
+      - httpApi: POST /sendmessage
+ 
+  receiveMessage:
+    handler: src/services/receiveMessageQueueService.receiveMessageQueueHandler
+    events:
+      - sqs:
+        arn: arn:aws:sqs:ap-south-1:657149196530:simple-fifo-queue.fifo
+    
