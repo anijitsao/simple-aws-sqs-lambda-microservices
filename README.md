@@ -42,7 +42,7 @@ To use the code in this example you **must** have an valid [AWS account](https:/
 First clone the repo
 
 ```bash
-$ git clone https://github.com/anijitsahu/simple-aws-sqs-lambda-microservices.git
+$ git clone https://github.com/anijitsao/simple-aws-sqs-lambda-microservices.git
 ```
 
 Install all the necessary dependencies by going inside the directory
